@@ -1,0 +1,13 @@
+client_name,symbol,number_of_locates_requested
+Client1,ABC,100
+Client2,ABC,100
+Client3,ABC,200
+Client4,ABC,100
+Client1,QQQ,100
+Client2,QQQ,100
+Client3,QQQ,100
+Client4,QQQ,200
+Client1,TTT,100
+Client2,TTT,200
+Client3,TTT,100
+Client4,TTT,100
