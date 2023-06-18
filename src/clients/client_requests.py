@@ -118,11 +118,11 @@ class RequestesLocatesClient:
 
 if __name__ == '__main__':
     csv_file = 'locates.csv'
-    csv_path = Path(__file__).parent.parent.joinpath('resources', csv_file)
+    csv_path = Path(__file__).parent.parent.parent.joinpath('resources', csv_file)
     inst = RequestesLocatesClient(csv_path)
-    inst.load_data('locates.csv')
-    approved_locates = {"ABC": 580, "QQQ": 445, "TTT": 299.9956}
+    inst.load_data(csv_path)
+    approved_locates = {"ABC": 480, "QQQ": 445, "TTT": 299.9956}
     inst.calc_approved_locates_by_client('symbol', approved_locates)
-    res = inst.request_locates({"client_name": "Client1", 'symbol': "ABC", "number_of_locates_requested": 100})
+    res = inst.request_locates({"client_name": "Client1", 'symbol': "ABC", "number_of_locates_requested": 200})
     print(res)
 
