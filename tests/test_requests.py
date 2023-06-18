@@ -8,13 +8,13 @@ in_params = [{"client_name": "Client1", 'symbol': "TTT", "number_of_locates_requ
              {"client_name": "Client3", 'symbol': "TTT", "number_of_locates_requested": 100},
              {"client_name": "Client4", 'symbol': "TTT", "number_of_locates_requested": 100}]
 
-expct_params = [{'client_name': 'Client1', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100},
-                {'client_name': 'Client2', 'symbol': 'TTT', 'req_locates': 200, 'approved_locates': 200},
-                {'client_name': 'Client3', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100},
-                {'client_name': 'Client4', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100}]
+expected_params = [{'client_name': 'Client1', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100},
+                   {'client_name': 'Client2', 'symbol': 'TTT', 'req_locates': 200, 'approved_locates': 200},
+                   {'client_name': 'Client3', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100},
+                   {'client_name': 'Client4', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100}]
 
 
-@pytest.mark.parametrize("inp,expected", zip(in_params, expct_params))
+@pytest.mark.parametrize("inp,expected", zip(in_params, expected_params))
 def test_devisible_by_100(inp, expected, settings_data, tests_client, cfg_data, request):
     """
     Verify that the approved locates are calculated correctly and should be proportional to the requested sum.
@@ -33,13 +33,13 @@ def test_devisible_by_100(inp, expected, settings_data, tests_client, cfg_data, 
                             F" {expected}, found: {res}"
 
 
-expct_params = [{'client_name': 'Client1', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100},
-                {'client_name': 'Client2', 'symbol': 'TTT', 'req_locates': 200, 'approved_locates': 199.326},
-                {'client_name': 'Client3', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100},
-                {'client_name': 'Client4', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100}]
+expected_params = [{'client_name': 'Client1', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100},
+                   {'client_name': 'Client2', 'symbol': 'TTT', 'req_locates': 200, 'approved_locates': 199.326},
+                   {'client_name': 'Client3', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100},
+                   {'client_name': 'Client4', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100}]
 
 
-@pytest.mark.parametrize("inp,expected", zip(in_params, expct_params))
+@pytest.mark.parametrize("inp,expected", zip(in_params, expected_params))
 def test_not_divisible_by_100(inp, expected, settings_data, tests_client, cfg_data, request):
     """
     Verify that the approved locates are calculated correctly when total approved chunks per symbol isn't divisible by 100.
@@ -57,13 +57,13 @@ def test_not_divisible_by_100(inp, expected, settings_data, tests_client, cfg_da
                             F" {expected}, found: {res}"
 
 
-expct_params = [{'client_name': 'Client1', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 49.326},
-                {'client_name': 'Client2', 'symbol': 'TTT', 'req_locates': 200, 'approved_locates': 0},
-                {'client_name': 'Client3', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 0},
-                {'client_name': 'Client4', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 0}]
+expected_params = [{'client_name': 'Client1', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 49.326},
+                   {'client_name': 'Client2', 'symbol': 'TTT', 'req_locates': 200, 'approved_locates': 0},
+                   {'client_name': 'Client3', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 0},
+                   {'client_name': 'Client4', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 0}]
 
 
-@pytest.mark.parametrize("inp,expected", zip(in_params, expct_params))
+@pytest.mark.parametrize("inp,expected", zip(in_params, expected_params))
 def test_approved_less_than_100(inp, expected, settings_data, tests_client, cfg_data, request):
     """
     Verify that the approved locates are calculated correctly when total approved is smaller a 100 chunk.
