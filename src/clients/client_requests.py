@@ -32,15 +32,17 @@ class RequestesLocatesClient:
 
     def request_locates(self, requested_locates: dict[str, int]) -> dict[str, int]:
         """
-        gets a customer's locates request of a specific symbol and return the approved located
+        retrieves a customer's locates request of a specific symbol and return the approved located
         :param requested_locates: e.g. {"client_name": "Client1", 'symbol': "TTT", "number_of_locates_requested": 100}
         :return: e.g. {'client_name': 'Client1', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 100}
         """
         requested_locates = json.loads(requested_locates) if not isinstance(requested_locates, dict) else requested_locates
+        # checks for approved locates error
         if self.calc_approved_error:
             res = {"Error": self.calc_approved_error, "error": 0}
             logging.error(F'request: {requested_locates}, ended with error: {res}')
             return res
+        # retrieves the customer's locates request
         req_per_client = self.dist_loc_by_client.get(requested_locates['client_name'])
         if req_per_client:
             for i in req_per_client:
@@ -51,6 +53,7 @@ class RequestesLocatesClient:
                             "approved_locates": i['approved_locates']}
                     logging.info(F'request: {requested_locates}, has this approved locates: {res}')
                     return res
+        # if client(customer) approved locates not found return an error
         res = {"Error": F"no approved locates found for {requested_locates['client_name']}-symbol-{requested_locates['symbol']}", "error": 1}
         logging.error(F'request: {requested_locates}, ended with error: {res}')
         return res
