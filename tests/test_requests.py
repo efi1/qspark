@@ -57,6 +57,24 @@ def test_not_divisible_by_100(inp, expected, settings_data, tests_client, cfg_da
                             F" {expected}, found: {res}"
 
 
+expct_params = [{'client_name': 'Client1', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 49.326},
+                {'client_name': 'Client2', 'symbol': 'TTT', 'req_locates': 200, 'approved_locates': 0},
+                {'client_name': 'Client3', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 0},
+                {'client_name': 'Client4', 'symbol': 'TTT', 'req_locates': 100, 'approved_locates': 0}]
+
+
+@pytest.mark.parametrize("inp,expected", zip(in_params, expct_params))
+def test_approved_less_than_100(inp, expected, settings_data, tests_client, cfg_data, request):
+    """
+    Verify that the approved locates are calculated correctly when total approved is smaller a 100 chunk.
+    """
+    if request.node.name.split('[')[1].split('-')[0] == 'inp0': # to be run only at first iteration only
+        tests_client.calc_approved_locates_by_client(cfg_data.field_name, cfg_data.approved_locates)
+    res = tests_client.request_locates(inp)
+    assert res == expected, F"wrong approved locates; total approved: {cfg_data.approved_locates} locates, expected:" \
+                            F" {expected}, found: {res}"
+
+
 def test_neg_missing_client_request(settings_data, tests_client, cfg_data):
     """
     Verify that a correct error received when a non-valid request is made (a customer who hasn't requested locates,
