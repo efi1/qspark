@@ -1,6 +1,7 @@
 import pytest
 import logging
 
+
 logging.getLogger()
 
 in_params = [{"client_name": "Client1", 'symbol': "TTT", "number_of_locates_requested": 100},
