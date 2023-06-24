@@ -103,7 +103,7 @@ def load_test_params(test_name) -> object:
 
 def pytest_generate_tests(metafunc):
     """
-    generate the parametrized args which rewuired for the parametrized tests.
+    generate the parametrized args which required for the parametrized tests.
     :param metafunc: pytest built-in function
     """
     fct_name = metafunc.function.__name__
