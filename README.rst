@@ -4,13 +4,10 @@ Q-Spark Assignment
 
 The assignment includes several tests which verify server request functionality .
 
-Test1:     Verify that the approved locates are calculated correctly and should be proportional to the requested sum.
-Test2:     Verify that the approved locates are calculated correctly when total approved chunks per symbol isn't divisible
-    by 100.
-Test3:     Verify that a correct error received when a non-valid request is made (a customer who hasn't requested locates,
-    but checks later if they are approved).
-Test4:     Verify that a correct error received when a non-valid request approval was made (the server approved more than
-     was requested).
+- Test1:     Verify that the approved locates are calculated correctly and should be proportional to the requested sum.
+- Test2:     Verify that the approved locates are calculated correctly when total approved chunks per symbol isn't divisible by 100.
+- Test3:     Verify that a correct error received when a non-valid request is made (a customer who hasn't requested locates, but checks later if they are approved).
+- Test4:     Verify that a correct error received when a non-valid request approval was made (the server approved more than  was requested).
 
 Usage:
 
