@@ -79,6 +79,12 @@ class RequestesLocatesClient:
         for key, value in itertools.groupby(sorted_data, key=itemgetter(field_name)):
             yield key, list(value)
 
+        # another option
+        # grouped_by_data = defaultdict(list)
+        # for i in sorted_data:
+        #     grouped_by_data[i['sym']].append(i)
+        # return grouped_by_data
+
     def calc_approved_locates_by_client(self, field_name: str, approved_locates: [str, dict]):
         """
         Calculates the approved locates for each client.
