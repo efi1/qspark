@@ -1,0 +1,12 @@
+.idea
+.pytest_cache
+venv/
+venv
+src/request_locates.egg-info
+dist/
+dist
+logfile.log
+tests/logfile.log
+build/
+build
+tests/__pycache__
